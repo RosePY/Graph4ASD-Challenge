@@ -1,5 +1,5 @@
 # Graph4ASD-Challenge
-[Live Leaderboard 🏆](https://rosepy.github.io/Graph4ASD-Challenge/leaderboard.html)
+[Live Leaderboard](https://rosepy.github.io/Graph4ASD-Challenge/leaderboard.html) 🏆
 
 The Graph4ASD Challenge aims to leverage the power of Graph Neural Networks (GNNs) for the classification of Autism Spectrum Disorder (ASD) using resting-state fMRI functional connectivity data from the ABIDE dataset.
 
