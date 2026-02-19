@@ -183,12 +183,19 @@ async function main(){
     // normalize and compute rank order by score (descending) initially
     const cleaned = rows
       .filter(r => r.team) // ignore empty template line
+      // .map(r => ({
+      //   timestamp_utc: r.timestamp_utc,
+      //   team: r.team,
+      //   model: (r.model || "").toLowerCase(),
+      //   score: r.score,
+      //   notes: r.notes || "",
+      // }));
       .map(r => ({
-        timestamp_utc: r.timestamp_utc,
-        team: r.team,
+        timestamp_utc: r.timestamp,
+        team: r.team_name,
         model: (r.model || "").toLowerCase(),
-        score: r.score,
-        notes: r.notes || "",
+        score: r.validation_accuracy,
+        notes: r.validation_f1_score || "",
       }));
 
     state.rows = cleaned;
