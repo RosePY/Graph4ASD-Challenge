@@ -41,7 +41,7 @@ def calculate_scores(submission_path: Path):
         raise ValueError("Labels file must contain 'id' and 'label' columns.")
 
     prediction_col = "label" if "label" in submission_df.columns else "label"
-    if "filename" not in submission_df.columns or prediction_col not in submission_df.columns:
+    if "id" not in submission_df.columns or prediction_col not in submission_df.columns:
         raise ValueError("Submission file must contain 'filename' and 'prediction' columns.")
 
     merged = labels_df.merge(
