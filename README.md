@@ -4,14 +4,14 @@
 
 ## 📌 Overview
 
-This repository hosts the **Graph4ASD Challenge**, a graph machine learning competition focused on **Autism Spectrum Disorder (ASD) classification** using **resting-state fMRI functional connectivity data** from the **ABIDE dataset**.
+This repository hosts the **Graph4ASD Challenge**, a graph machine learning competition focused on **Autism Spectrum Disorder (ASD) classification** using resting-state fMRI functional connectivity data from the ABIDE dataset.
 
 Participants must design and train **Graph Neural Network (GNN)** models to classify subjects as:
 
 - ASD  
 - Typical Control (TC)  
 
-based on **brain connectivity graphs**.
+based on brain connectivity graphs.
 
 Each subject is represented as a graph where:
 
@@ -30,7 +30,7 @@ Leaderboard scores are automatically updated.
 
 ## 🧠 Task Description
 
-Each sample corresponds to **one subject’s brain graph**.
+Each sample corresponds to one subject’s brain graph.
 
 ### Graph Definition
 
@@ -48,8 +48,8 @@ Where:
 
 Train a model that correctly predicts whether a subject:
 
-- has **Autism Spectrum Disorder (ASD)**  
-- or is a **Typical Control (TC)**  
+- has Autism Spectrum Disorder (ASD)  
+- or is a Typical Control (TC)  
 
 using:
 
@@ -66,7 +66,7 @@ The dataset is derived from:
 
 > **Autism Brain Imaging Data Exchange (ABIDE)**
 
-ABIDE aggregates anonymized rs-fMRI data from **17 international sites**.
+ABIDE aggregates anonymized rs-fMRI data from 17 international sites.
 
 ### Full Dataset (original ABIDE)
 
@@ -77,7 +77,7 @@ ABIDE aggregates anonymized rs-fMRI data from **17 international sites**.
 | Controls | 493 (48.86%) |
 | Brain atlas | Craddock 200 |
 
-⚠️ For the challenge, a **processed subset** is provided, 484 samples for train and 153 for test. Participants must use data as-is, since original data has been exclusively processed for this challenge. 
+⚠️ For the challenge, a processed subset is provided, 484 samples for train and 153 for test. Participants must use data as-is, since original data has been exclusively processed for this challenge. 
 
 ---
 
@@ -90,7 +90,7 @@ Each subject is stored as a graph:
 
 All graphs share:
 
-- Same number of nodes → **200**  
+- Same number of nodes → 200  
 - Same node ordering → Craddock atlas  
 
 ---
