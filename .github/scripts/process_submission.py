@@ -15,7 +15,7 @@ from leaderboard.calculate_scores import calculate_scores
 
 SUBMISSION_DIR = os.path.join(project_root, "submissions")
 print("SUBMISSIONS DIR CONTENT:")
-print(os.listdir(SUBMISSIONS_DIR))
+print(os.listdir(SUBMISSION_DIR))
 
 def read_latest_submission():
     changed_files_str = os.getenv("CHANGED_FILES", "").strip()
