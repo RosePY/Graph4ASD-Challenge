@@ -32,9 +32,6 @@ jobs:
       - name: Identify PR Files
         id: find_files
         run: |
-          - name: Identify PR Files
-        id: find_files
-        run: |
           # 1. Fetch the PR head and the base branch fully
           git fetch origin ${{ github.event.pull_request.base.ref }}
           git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_branch
