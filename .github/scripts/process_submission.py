@@ -12,22 +12,38 @@ from leaderboard.update_leaderboard import update_leaderboard_csv
 SUBMISSION_DIR = os.path.join(project_root, "submissions")
 
 def read_latest_submission():
-    # Try to get files from the git diff provided by the workflow
-    changed_files_str = os.getenv("CHANGED_FILES", "")
-    print("changed_files_str",changed_files_str)
-    if changed_files_str:
-        # Split by newline/space and get the first .enc file
-        files = [f.strip() for f in changed_files_str.split() if f.endswith(".enc")]
-        print("files", files) 
-        if files:
-            return os.path.abspath(files[0])
+    changed_files_str = os.getenv("CHANGED_FILES", "").strip()
+    
+    if not changed_files_str:
+        print("No files provided in CHANGED_FILES environment variable.")
+        # Return empty list instead of looking at the whole directory
+        return []
+
+    # Filter and create absolute paths
+    files = [
+        os.path.abspath(os.path.join(project_root, f.strip())) 
+        for f in changed_files_str.split() 
+        if f.endswith(".enc")
+    ]
+    return files
+    
+# def read_latest_submission():
+#     # Try to get files from the git diff provided by the workflow
+#     changed_files_str = os.getenv("CHANGED_FILES", "")
+#     print("changed_files_str",changed_files_str)
+#     if changed_files_str:
+#         # Split by newline/space and get the first .enc file
+#         files = [f.strip() for f in changed_files_str.split() if f.endswith(".enc")]
+#         print("files", files) 
+#         if files:
+#             return os.path.abspath(files[0])
             
-    files = [f for f in os.listdir(SUBMISSION_DIR) if f.endswith(".enc")]
-    if not files:
-        raise NoEncryptedFileError("No encrypted submission files found in 'submissions' directory.")
-    latest_file = max(files, key=lambda f: os.path.getmtime(os.path.join(SUBMISSION_DIR, f)))
-    print(latest_file)
-    return os.path.join(SUBMISSION_DIR, latest_file)
+#     files = [f for f in os.listdir(SUBMISSION_DIR) if f.endswith(".enc")]
+#     if not files:
+#         raise NoEncryptedFileError("No encrypted submission files found in 'submissions' directory.")
+#     latest_file = max(files, key=lambda f: os.path.getmtime(os.path.join(SUBMISSION_DIR, f)))
+#     print(latest_file)
+#     return os.path.join(SUBMISSION_DIR, latest_file)
 
 
 def decrypt_submission_file(encrypted_file_path):
