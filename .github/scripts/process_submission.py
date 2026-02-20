@@ -14,9 +14,11 @@ SUBMISSION_DIR = os.path.join(project_root, "submissions")
 def read_latest_submission():
     # Try to get files from the git diff provided by the workflow
     changed_files_str = os.getenv("CHANGED_FILES", "")
+    print("changed_files_str",changed_files_str)
     if changed_files_str:
         # Split by newline/space and get the first .enc file
         files = [f.strip() for f in changed_files_str.split() if f.endswith(".enc")]
+        print("files", files) 
         if files:
             return os.path.abspath(files[0])
             
