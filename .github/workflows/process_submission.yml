@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   process-submission:
@@ -61,19 +62,37 @@ jobs:
         run: |
           python .github/scripts/process_submission.py
 
+
       - name: Commit Leaderboard Update
         run: |
           git config user.name "SubmissionBot"
           git config user.email "bot@noreply.github.com"
+          
+          # 1. Clean up any leftover decrypted files just in case
+          rm -f submissions/*.csv
+          
+          # 2. Add ONLY the leaderboard
           if [ -f "leaderboard.csv" ]; then
             git add leaderboard.csv
           elif [ -f "leaderboard/leaderboard.csv" ]; then
             git add leaderboard/leaderboard.csv
           fi
           
+          # 3. Commit and Push to main
           if ! git diff --cached --quiet; then
-            git commit -m "Update leaderboard scores [skip ci]"
+            git commit -m "Update leaderboard scores from PR #${{ github.event.pull_request.number }} [skip ci]"
             git push origin HEAD:${{ github.event.pull_request.base.ref }}
-          else
-            echo "No changes to the leaderboard. Skipping push."
           fi
+
+      - name: Post Score and Close PR
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Post the summary comment
+          if [ -f "submission_summary.md" ]; then
+            gh pr comment ${{ github.event.pull_request.number }} --body-file submission_summary.md
+          fi
+          
+          # Close the PR without merging
+          gh pr close ${{ github.event.pull_request.number }} --comment "Submission processed. The leaderboard has been updated, and this PR is now closed to keep the repository clean. Thank you!"
