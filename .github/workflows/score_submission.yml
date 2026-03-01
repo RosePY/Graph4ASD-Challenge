@@ -1,0 +1,164 @@
+name: Evaluate Submission
+
+on:
+  pull_request_target:
+    paths:
+      - 'submissions/**'
+
+permissions:
+  pull-requests: write
+  contents: write
+  
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 Checkout trusted code (main branch)
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # 2 Fetch PR branch into local ref "pr"
+      - name: Fetch PR branch
+        run: |
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr
+
+      # 3 Validate submission structure
+      - name: Validate submission files
+        run: |
+          echo "Checking files in PR..."
+
+          # Get list of changed files inside submissions/
+          FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} pr | grep '^submissions/' || true)
+
+          echo "Files found:"
+          echo "$FILES"
+
+          EXPECTED1="submissions/predictions.csv.enc"
+          EXPECTED3="submissions/metadata.json"
+
+          COUNT=$(echo "$FILES" | wc -l)
+
+          if [ "$COUNT" -ne 2 ]; then
+            echo " PR must contain exactly 2 files inside submissions/"
+            exit 1
+          fi
+
+          if ! echo "$FILES" | grep -qx "$EXPECTED1"; then
+            echo " Missing submissions/predictions.csv.enc"
+            exit 1
+          fi
+
+          if ! echo "$FILES" | grep -qx "$EXPECTED3"; then
+            echo " Missing submissions/metadata.json"
+            exit 1
+          fi
+
+          echo " Submission structure valid"
+
+      # 4 Checkout only the required submission files
+      - name: Checkout submission files
+        run: |
+          git checkout pr -- submissions/predictions.csv.enc
+          git checkout pr -- submissions/metadata.json
+
+      # 5 Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      # 6 Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 7 Decrypt submission
+      - name: Decrypt submission
+        env:
+          SUBMISSION_PRIVATE_KEY: ${{ secrets.SUBMISSION_PRIVATE_KEY }}
+        run: |
+          # 1. Create the private key file
+          cat <<EOF > extra/private_key.pem
+          $SUBMISSION_PRIVATE_KEY
+          EOF
+          
+          # 2. Decrypt the key and STRIP ALL HIDDEN WINDOWS CHARACTERS
+          # 'tr -d' removes carriage returns (\r) and newlines (\n)
+          # openssl pkeyutl -decrypt -inkey extra/private.pem -in submissions/secret.key.enc | tr -d '\r\n ' > extra/key.txt
+          
+          # 3. Decrypt the CSV using the cleaned key
+          #openssl enc -d -aes-256-cbc -in submissions/predictions.csv.enc -out submissions/predictions.csv -pass file:extra/key.txt -pbkdf2
+          python extra/decrypt.py submissions/predictions.csv.enc 
+          
+          # 4. Immediate cleanup
+          rm extra/private_key.pem 
+
+      # 8 Validate submission
+      - name: Validate submission
+        run: |
+          python competition/validate_submission.py \
+            submissions/predictions.csv \
+            submissions/metadata.json
+
+      # 9 Clone private labels repo
+      - name: Get labels
+        env:
+          TEST_LABELS_CSV: ${{ secrets.TEST_LABELS_CSV }}
+        run: |
+          cat <<EOF > test_labels.csv
+          $TEST_LABELS_CSV
+          EOF
+
+
+      # 10 Run scoring
+      - name: Run scoring
+        run: |
+          python competition/evaluate.py \
+            submissions/predictions.csv \
+            test_labels.csv \
+            score.txt
+          cp score.txt /tmp/score.txt
+
+      # 11 Comment Macro F1 on Pull Request
+      - name: Comment Macro F1 on PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const raw = fs.readFileSync('/tmp/score.txt', 'utf8').trim();
+            const macroF1 = raw.split(',')[0].trim();
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: ` Submission Evaluated
+             **Macro F1 Score:** \`${macroF1}\``
+            });
+
+      # 12 Update leaderboard.csv
+      - name: Update leaderboard.csv
+        run: |
+          git config user.name "challenge-bot"
+          git config user.email "challenge-bot@users.noreply.github.com"
+          git checkout main
+          python competition/update_leaderboard.py \
+            /tmp/score.txt \
+            submissions/metadata.json \
+            "${{ github.event.pull_request.user.login }}"
+          python competition/render_leaderboard.py
+
+      # 13 Commit and push leaderboard
+      - name: Commit leaderboard update
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          git restore --staged .
+          git add leaderboard/leaderboard.csv
+          git add leaderboard/leaderboard.md
+          git commit -m "Update leaderboard"
+          git push https://${BOT_TOKEN}@github.com/RosePY/Teste_del.git main
