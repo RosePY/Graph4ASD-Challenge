@@ -182,7 +182,7 @@ function setupSorting() {
 
 async function main() {
   try {
-    const res = await fetch("/Teste_del/leaderboard/leaderboard.csv", { cache: "no-store" });
+    const res = await fetch("/Graph4ASD-Challenge/leaderboard/leaderboard.csv", { cache: "no-store" });
     const txt = await res.text();
     state.rows = parseCSV(txt);
 
