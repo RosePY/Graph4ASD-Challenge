@@ -1,2 +1,3 @@
 username,timestamp_utc,team,run_id,type,model,macro_f1,accuracy,precision,recall
 RosePY,2026-03-07 17:30:47 UTC,teamrf,run_001,human,GAT,0.470226,0.470588,0.478873,0.435897
+Murad-Hossen,2026-03-07 17:31:39 UTC,murad_hossen,murad_hossen_2026-03-05,human,GCN,0.592666,0.594771,0.593023,0.653846
