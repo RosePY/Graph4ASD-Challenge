@@ -1,0 +1,7 @@
+{
+  "team": "Ignatius B",
+  "run_id": "run_001",
+  "type": "human",
+  "model": "GraphSAGE",
+  "notes": "GraphSAGE"
+}
