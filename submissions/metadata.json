@@ -1,0 +1,7 @@
+{
+    "team": "hadil_antigravity",
+    "run_id": "run_4_threshold_0.5",
+    "type": "human+llm",
+    "model": "GIN",
+    "notes": "GIN with 3 layers, hidden_dim 64, and adjacency threshold 0.5. Random seed fixed to 25."
+}
