@@ -1,0 +1,7 @@
+{
+    "team": "Vinit Singroha",
+    "run_id": "vinitsingroha",
+    "type": "human",
+    "model": "GIN++",
+    "notes": "2-layer GIN with k-NN sparsification, attention readout and Dropedge regularization"
+}
