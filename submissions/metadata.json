@@ -1,0 +1,7 @@
+{
+  "team": "nourmaj",
+  "run_id": "example_run_id",
+  "type": "human",   
+  "model": "simple GAT",
+  "notes": "optimizations within training loop"
+}
