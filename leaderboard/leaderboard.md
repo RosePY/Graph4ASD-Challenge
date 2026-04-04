@@ -6,7 +6,8 @@
 | 3 | bijay | `GCN` | human | 0.573999 | 2026-03-30 04:15:30 UTC |
 | 4 | faranbutt | `GCN` | human | 0.567723 | 2026-03-29 12:13:56 UTC |
 | 5 | Vinit Singroha | `GIN++` | human | 0.561792 | 2026-04-03 11:00:50 UTC |
-| 6 | Tasneem Selim | `GCN` | human | 0.435957 | 2026-03-13 08:18:42 UTC |
-| 7 | Ignatius B | `GraphSAGE` | human | 0.421719 | 2026-03-09 16:34:02 UTC |
-| 8 | hadil | `GIN` | human+llm | 0.417978 | 2026-03-20 15:03:40 UTC |
-| 9 | samuel | `GCN` | human | 0.389111 | 2026-04-03 13:00:50 UTC |
+| 6 | emmanuel_owusu | `GraphLevelSAGE + AttentionalAggregation` | human+llm | 0.558177 | 2026-04-04 13:42:03 UTC |
+| 7 | Tasneem Selim | `GCN` | human | 0.435957 | 2026-03-13 08:18:42 UTC |
+| 8 | Ignatius B | `GraphSAGE` | human | 0.421719 | 2026-03-09 16:34:02 UTC |
+| 9 | hadil | `GIN` | human+llm | 0.417978 | 2026-03-20 15:03:40 UTC |
+| 10 | samuel | `GCN` | human | 0.389111 | 2026-04-03 13:00:50 UTC |

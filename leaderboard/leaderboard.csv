@@ -8,3 +8,4 @@ faranbutt,2026-03-29 12:13:56 UTC,faranbutt,02,human,GCN,0.567723,0.568627,0.588
 bjayadikary,2026-03-30 04:15:30 UTC,bijay,1,human,GCN,0.573999,0.575163,0.578313,0.615385
 VinitSingroha,2026-04-03 11:00:50 UTC,Vinit Singroha,vinitsingroha,human,GIN++,0.561792,0.562092,0.577465,0.525641
 samuelmatia,2026-04-03 13:00:50 UTC,samuel,run_01,human,GCN,0.389111,0.424837,0.368421,0.179487
+emmakowu3579-ui,2026-04-04 13:42:03 UTC,emmanuel_owusu,graph_sage_attention,human+llm,GraphLevelSAGE + AttentionalAggregation,0.558177,0.575163,0.561905,0.75641
