@@ -1,0 +1,7 @@
+{
+"team": "emmanuel_owusu", 
+  "run_id": "sage_attention_threshold",
+  "type": "human+llm",
+  "model": "GraphSAGE + AttentionalAggregation",
+  "notes": "Utilized full-density adjacency matrices to preserve subtle connectivity biomarkers. Replaced global pooling with AttentionalAggregation to dynamically weight and isolate specific ASD-related brain regions."
+}
