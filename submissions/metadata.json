@@ -2,6 +2,6 @@
     "team": "El-Ikram",
     "run_id": "run_2",
     "type": "human+llm",  
-    "model": "GNN",
+    "model": "GAT",
     "notes": "/"
   }
