@@ -1,7 +1,7 @@
 {
     "team": "emmanuel_owusu",
-    "run_id": "node_sage_kfold",
+    "run_id": "graph_sage_attention",
     "type": "human+llm",
-    "model": "NodeLevelSAGE (5-Fold CV Best)",
-    "notes": "Node-Level classification using weak supervision to match the 30,600 node evaluation criteria."
+    "model": "GraphLevelSAGE + AttentionalAggregation",
+    "notes": "Confirmed Graph-Level task. Tracked optimal weights by F1-Score. Deployed 1-based indexing for submission."
 }
