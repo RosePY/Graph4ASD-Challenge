@@ -1,7 +1,7 @@
 {
   "team": "nourmaj",
-  "run_id": "example_run_id",
+  "run_id": "258",
   "type": "human",   
-  "model": "simple GAT",
-  "notes": "optimizations within training loop"
+  "model": "GAT",
+  "notes": "none"
 }
