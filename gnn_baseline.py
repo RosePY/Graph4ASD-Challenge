@@ -24,6 +24,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 ADJ_TRAIN_PATH = "data/public/adj_train.npy"
 ADJ_TEST_PATH = "data/public/adj_test.npy"
 LABEL_PATH = "data/public/train_label.csv"
+SAMPLE_SUB_PATH = "data/public/sample_submission.csv"
 
 PREDICTION_PATH = "predictions.csv"
 LOG_PATH = "run_log.txt"
@@ -83,11 +84,11 @@ def load_data():
     adj_test_raw = np.load(ADJ_TEST_PATH).astype(np.float32)
     y = pd.read_csv(LABEL_PATH)["label"].values.astype(np.int64)
 
-    # Use adjacency BOTH as graph structure and as node features
+    # Use adjacency both as graph structure and as node features
     adj_train_clean = np.stack([preprocess_connectivity(a) for a in adj_train_raw], axis=0)
     adj_test_clean = np.stack([preprocess_connectivity(a) for a in adj_test_raw], axis=0)
 
-    x_train = adj_train_clean.copy()   # node features = adjacency rows
+    x_train = adj_train_clean.copy()
     x_test = adj_test_clean.copy()
 
     adj_train = np.stack([normalize_adjacency(a) for a in adj_train_clean], axis=0)
@@ -133,7 +134,6 @@ class UpgradedGCN(nn.Module):
         x = self.gcn2(x, adj)
         x = F.relu(x)
 
-        # Combine mean + max pooling for graph representation
         x_mean = x.mean(dim=1)
         x_max = x.max(dim=1).values
         g = torch.cat([x_mean, x_max], dim=1)
@@ -315,10 +315,19 @@ def main():
         logits = result.model(x_test_t, adj_test_t)
         pred = logits.argmax(dim=1).cpu().numpy().astype(int)
 
-    pd.DataFrame({
-        "id": np.arange(len(pred)),
+    sample_sub = pd.read_csv(SAMPLE_SUB_PATH)
+
+    if len(sample_sub) != len(pred):
+        raise ValueError(
+            f"Prediction length mismatch: got {len(pred)} predictions, "
+            f"but sample submission expects {len(sample_sub)} rows."
+        )
+
+    submission = pd.DataFrame({
+        "id": sample_sub["id"].values,
         "y_pred": pred,
-    }).to_csv(PREDICTION_PATH, index=False)
+    })
+    submission.to_csv(PREDICTION_PATH, index=False)
 
     save_loss_history(result.train_losses, result.val_losses, result.val_f1s, LOSS_CSV_PATH)
     write_log(result.best_val_f1, result.training_seconds)
