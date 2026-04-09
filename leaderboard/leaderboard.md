@@ -12,4 +12,3 @@
 | 9 | Ignatius B | `GraphSAGE` | human | 0.421719 | 2026-03-09 16:34:02 UTC |
 | 10 | hadil | `GIN` | human+llm | 0.417978 | 2026-03-20 15:03:40 UTC |
 | 11 | samuel | `GCN` | human | 0.389111 | 2026-04-03 13:00:50 UTC |
-| 12 | El-Ikram | `GAT` | human+llm | 0.337662 | 2026-04-04 23:12:37 UTC |

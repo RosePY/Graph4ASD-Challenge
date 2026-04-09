@@ -10,4 +10,3 @@ VinitSingroha,2026-04-03 11:00:50 UTC,Vinit Singroha,vinitsingroha,human,GIN++,0
 samuelmatia,2026-04-03 13:00:50 UTC,samuel,run_01,human,GCN,0.389111,0.424837,0.368421,0.179487
 emmakowu3579-ui,2026-04-04 13:42:03 UTC,emmanuel_owusu,graph_sage_attention,human+llm,GraphLevelSAGE + AttentionalAggregation,0.558177,0.575163,0.561905,0.75641
 NoorMajdoub,2026-04-04 16:48:01 UTC,nour maj,258,human,GAT,0.449074,0.542484,0.528986,0.935897
-El-Ikram,2026-04-04 23:12:37 UTC,El-Ikram,run_2,human+llm,GAT,0.337662,0.509804,0.509804,1.0
