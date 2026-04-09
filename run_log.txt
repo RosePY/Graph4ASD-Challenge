@@ -1,0 +1,24 @@
+Graph4ASD Challenge - Compliance Log
+====================================
+Seed: 25
+Model: Upgraded 2-layer GCN
+Features: adjacency matrix used as node features
+Pooling: mean + max pooling
+Search strategy: manual
+Number of runs used: 1
+Learning rate: 0.001
+Weight decay: 0.0001
+Hidden dimension: 64
+Dropout: 0.2
+Epoch budget: 120
+Early stopping patience: 15
+Best validation Macro-F1: 0.532905
+Training time (seconds): 10.86
+Loss history file: loss_history.csv
+
+Hardware
+--------
+Platform: Linux-6.1.0-0.deb11.5-amd64-x86_64-with-glibc2.31
+Processor: 
+PyTorch version: 2.5.1+cu124
+Device used: cpu

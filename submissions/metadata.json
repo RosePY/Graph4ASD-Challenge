@@ -1,0 +1,7 @@
+{
+  "team": "Peguy",
+  "run_id": "gcn_v1",
+  "type": "human",
+  "model": "2-layer GCN with adjacency as node features",
+  "notes": "Improved GCN using adjacency matrix as node features with mean+max pooling. Seed fixed to 25."
+}
