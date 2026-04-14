@@ -10,7 +10,8 @@
 | 7 | emmanuel_owusu | `GraphLevelSAGE + AttentionalAggregation` | human+llm | 0.558177 | 2026-04-04 13:42:03 UTC |
 | 8 | Peguy | `2-layer GCN with adjacency as node features` | human | 0.527949 | 2026-04-09 20:54:30 UTC |
 | 9 | nour maj | `GAT` | human | 0.449074 | 2026-04-04 16:48:01 UTC |
-| 10 | Tasneem Selim | `GCN` | human | 0.435957 | 2026-03-13 08:18:42 UTC |
-| 11 | Ignatius B | `GraphSAGE` | human | 0.421719 | 2026-03-09 16:34:02 UTC |
-| 12 | hadil | `GIN` | human+llm | 0.417978 | 2026-03-20 15:03:40 UTC |
-| 13 | samuel | `GCN` | human | 0.389111 | 2026-04-03 13:00:50 UTC |
+| 10 | Tuga Yousif | `GCNConv` | human | 0.441385 | 2026-04-14 18:58:50 UTC |
+| 11 | Tasneem Selim | `GCN` | human | 0.435957 | 2026-03-13 08:18:42 UTC |
+| 12 | Ignatius B | `GraphSAGE` | human | 0.421719 | 2026-03-09 16:34:02 UTC |
+| 13 | hadil | `GIN` | human+llm | 0.417978 | 2026-03-20 15:03:40 UTC |
+| 14 | samuel | `GCN` | human | 0.389111 | 2026-04-03 13:00:50 UTC |
