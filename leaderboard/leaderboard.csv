@@ -12,4 +12,3 @@ emmakowu3579-ui,2026-04-04 13:42:03 UTC,emmanuel_owusu,graph_sage_attention,huma
 NoorMajdoub,2026-04-04 16:48:01 UTC,nour maj,258,human,GAT,0.449074,0.542484,0.528986,0.935897
 KEMPEGUY,2026-04-09 20:54:30 UTC,Peguy,gcn_v1,human,2-layer GCN with adjacency as node features,0.527949,0.555556,0.544643,0.782051
 El-Ikram,2026-04-11 12:17:32 UTC,El-Ikram,run_2,human+llm,GIN,0.626877,0.627451,0.652174,0.576923
-TugaAhmed,2026-04-12 20:16:12 UTC,Tuga Yousif,run1,human,GAT,0.381672,0.496732,0.555556,0.064103
