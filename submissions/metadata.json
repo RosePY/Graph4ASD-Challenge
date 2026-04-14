@@ -1,0 +1,7 @@
+{
+  "team": "Tuga Yousif",
+  "run_id": "run1",
+  "type": "human", 
+  "model": "GCNConv",
+  "notes": ""
+}
