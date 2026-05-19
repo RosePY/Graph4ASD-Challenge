@@ -1,0 +1,7 @@
+{
+  "team": "Kimi K 2.6",
+  "run_id": "run_001",
+  "type": "llm",
+  "model": "GCN",
+  "notes": "2-layer GCN with global mean+max pooling, 5-fold CV ensemble, top-30 edges per node."
+}
