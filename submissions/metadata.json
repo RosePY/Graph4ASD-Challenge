@@ -1,7 +1,7 @@
 {
-  "team": "Ignatius B",
-  "run_id": "run_001",
-  "type": "human",
-  "model": "GraphSAGE",
-  "notes": "GraphSAGE"
+  "team": "llm_llama33_70b",
+  "run_id": "llama_api_run1",
+  "type": "llm-only",
+  "model": "Llama-3.3-70B-Instruct-Turbo",
+  "notes": "2-layer GCN with mean pooling + MLP classifier"
 }
