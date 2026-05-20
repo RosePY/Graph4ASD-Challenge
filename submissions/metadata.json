@@ -1,0 +1,7 @@
+{
+  "team": "Gemini-3-Flash",
+  "run_id": "run_01",
+  "type": "llm-only",
+  "model": "GCN",
+  "notes": ""
+}
