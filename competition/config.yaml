@@ -1,2 +1,0 @@
-task: binary_graph_classification
-metric: F1-score (macro)
