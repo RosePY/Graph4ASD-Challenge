@@ -1,0 +1,7 @@
+{
+  "team": "agent_gnn",
+  "run_id": "readme_recommended_gnn_v1",
+  "type": "llm-only",
+  "model": "GAT/GCN when tensors are readable",
+  "notes": "README requires GNN; local .npy graph tensors were used when readable, otherwise no-download fallback was required."
+}
